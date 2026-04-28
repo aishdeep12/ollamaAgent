@@ -17,3 +17,12 @@ Output exactly as JSON matching this schema:
 }}
 Count of keys in image_prompts should be equal to the number of images you need to generate.
 """
+
+
+rag_prompt = """you are a professional content reader.  based on the following content aswer the following question.
+context: {context}
+question: {question}
+
+provide a detailed answer to the question based on the context provided. if the context does not contain the answer, say "I don't know".
+
+"""
