@@ -14,6 +14,7 @@ from schemas import SummaryInput, SummaryOutput
 from huggingface import HuggingFaceClient
 
 load_dotenv()
+mode = os.getenv("MODE")
 
 def main():
     print("Hello from langchain!")
@@ -78,10 +79,11 @@ def main():
     
     # embedding = Embedding(path_of_file=os.path.join(os.path.dirname(__file__), "book.txt"))
     # embedding.create_embedding()
-    rag_prompt_template = ChatPromptTemplate.from_template(rag_prompt)
-    llm_query = rag_prompt_template.format_messages(context=context_search(inputs), question=inputs)
-    llm_response = llm.invoke(llm_query)
-    print(f"RAG Response: {llm_response}")
+    if mode == "1":
+        rag_prompt_template = ChatPromptTemplate.from_template(rag_prompt)
+        llm_query = rag_prompt_template.format_messages(context=context_search(inputs), question=inputs)
+        llm_response = llm.invoke(llm_query)
+        print(f"RAG Response: {llm_response}")
 
 
 
